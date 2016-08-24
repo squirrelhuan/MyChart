@@ -46,7 +46,7 @@ public class ConversationPopupWindow {
 	private String[] Name = { "多人聊天", "加好友", "扫一扫", "面对面快传", "付款"};
 	private int[] Images_ic = {R.drawable.conversation_options_multichat,R.drawable.conversation_options_addmember
 			,R.drawable.conversation_options_qr,R.drawable.conversation_facetoface_qr,R.drawable.conversation_options_charge_icon};
-
+//
 	public ConversationPopupWindow() {
 
 	}
