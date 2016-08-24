@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <ImageView
+            android:id="@+id/iv_left_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:background="@drawable/default_personal_image"/>
+
+        <TextView
+            android:id="@+id/tv_title_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="个人中心"
+            android:textColor="@color/gray"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+
+        <RadioGroup
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/btn_0"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:text="消息"
+                android:gravity="center"
+                android:checked="true"
+                android:button="@null"
+                android:background="@drawable/radio01"
+                />
+            <RadioButton
+                android:id="@+id/btn_1"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:text="电话"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/radio02"
+                />
+
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/button_conversation_menu"
+            android:text="ok" />
+
+        <TextView
+            android:id="@+id/unread_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/btn_right"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/unread_message"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="6sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/list_devider" />
+
+</LinearLayout>

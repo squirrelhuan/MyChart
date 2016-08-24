@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="titlebar_color">@color/white</color>
+    <color name="gray">#646464</color>
+    <color name="low_gray">#EBEBEB</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#3F9FE0</color>
+    <color name="low_blue">#3CAAFF</color>
+    <color name="deepblue">#256E9C</color>
+    <color name="list_devider">#C8C8C8</color>
+
+    <color name="button_select">#aa801818</color>
+    <color name="button_normal">#801818</color>
+
+    <!-- 按钮颜色 -->
+    <color name="Button_blue">#4AA0FE</color>
+    <color name="Button_yellow">#FF8C00</color>
+    <color name="Button_grey">#DBDBDB</color>
+    <color name="Button_red">#FD4B4B</color>
+    <color name="Button_gray">#666666</color>
+
+    <!-- 线条颜色 -->
+    <color name="Transparent">#00000000</color>
+    <color name="light_blue_normal">#5682B6</color>
+    <color name="light_blue_pressed">#7EA3C8</color>
+
+    <color name="light_blue">#18B4ED</color>
+    <color name="deep_blue">#495dff</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#EBECEE</color>
+    <color name="deep_grey">#BBB8B3</color>
+    <color name="green">#86D26E</color>
+    <color name="startColor">#ACE7EF</color>
+    <color name="centerColor">#C7E0DC</color>
+    <color name="endColor">#E8D9C6</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>

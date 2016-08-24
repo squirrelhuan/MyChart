@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.administrator.mychart.ChartActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include
+            android:id="@+id/title_bar"
+            layout="@layout/title_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:divider="#00000000"
+            android:dividerHeight="0dip"
+            android:background="@drawable/chatting_background"
+            android:listSelector="@android:color/transparent"></ListView>
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imagebutton_expression"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:focusable="true"
+                android:layout_gravity="center"
+                android:background="@drawable/imagebutton_expression" />
+
+            <Button
+                android:id="@+id/button_left"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_send_background"
+                android:text="发送"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edittext_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_background"
+                android:padding="7dp"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/button_right"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_send_background"
+                android:text="发送"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="7"
+            android:visibility="visible"
+            android:background="@color/grey">
+
+        </GridView>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

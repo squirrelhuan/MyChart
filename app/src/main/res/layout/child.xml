@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dip"
+    android:gravity="center_vertical"
+    android:background="@color/white" >
+
+    <ImageView
+        android:id="@+id/groupIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@mipmap/person" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/childto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:text="我的qq好友"
+            android:textColor="@color/red"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_motto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:text="叶的纹路阐述的伤口我的梦想已飞走!"
+            android:textDirection="3"
+            android:maxLength="25"
+            android:lines="1"
+            android:textScaleX="1.2"
+            android:singleLine="true"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
