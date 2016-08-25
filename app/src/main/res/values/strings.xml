@@ -32,4 +32,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="msg_default_status">将二维码放入框内，即可自动扫描</string>
 </resources>

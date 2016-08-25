@@ -1,6 +1,7 @@
 package com.example.administrator.mychart;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.administrator.mychart.activity.CaptureActivity;
 import com.example.administrator.mychart.event.myevent.DoorListener;
 import com.example.administrator.mychart.event.myevent.MessageEvent;
 import com.example.administrator.mychart.fragment.MenuFragment;
@@ -50,7 +52,7 @@ public class MainActivity extends SlidingFragmentActivity
 
     protected static LayoutInflater inflater_toast;
     protected static ConversationPopupWindow conversationPopupWindow;/** 上下文环境 */
-    protected static Context mContext;
+    public static Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -285,5 +287,39 @@ public class MainActivity extends SlidingFragmentActivity
         View view = inflater_toast.inflate(R.layout.login_popupwindows,null);
         conversationPopupWindow = new ConversationPopupWindow();
         conversationPopupWindow.getView(mContext, view,pview);
+    }
+
+    Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+
+            }
+            super.handleMessage(msg);
+        }
+    };
+public static void scanf(){
+    Intent intent = new Intent(mContext, CaptureActivity.class);
+    ((MainActivity)mContext).startActivityForResult(intent, 1);
+}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        // TODO Auto-generated method stub
+        switch (requestCode)
+        {
+            case 1:
+                if (data != null)
+                {
+                    String result = data.getStringExtra("result");
+                    if (result != null){}
+                        //tv.setText(result);
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

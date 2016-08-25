@@ -1,6 +1,7 @@
 package com.example.administrator.mychart.popupwindow;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,8 +30,10 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 
 import com.example.administrator.mychart.BaseActy;
+import com.example.administrator.mychart.MainActivity;
 import com.example.administrator.mychart.MyselfApplication;
 import com.example.administrator.mychart.R;
+import com.example.administrator.mychart.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,7 +56,7 @@ public class ConversationPopupWindow {
 	}
 
 	//菜单
-	public void getView(Context mContext ,View view ,View parentView) {
+	public void getView(final Context mContext ,View view ,View parentView) {
 	//public void ShowMenuView(View anchor) {
 		//View view = null;
 		if (pW_menu == null) {
@@ -87,7 +91,25 @@ public class ConversationPopupWindow {
 				new String[] { "name", "image" },
 				new int[] { R.id.menu_item_name, R.id.menu_item_image });
 		gridview_menu.setAdapter(adapter);
-
+		gridview_menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				switch (position){
+					case 0:
+						break;
+					case 1:
+						break;
+					case 2://扫一扫
+						//Intent intent = new Intent(mContext, CaptureActivity.class);
+						((MainActivity)mContext).scanf();
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+				}
+			}
+		});
 
 		// 可以聚集 ，按返回键，先popWindow，不然popWindow和activity会同时消失，估计这既是Android焦点顺序的原理吧。
 		pW_menu.setFocusable(true);

@@ -9,10 +9,10 @@
         android:id="@+id/rel_menu_bg_02"
         android:layout_marginTop="72dp"
         android:layout_width="150dp"
-        android:layout_height="220dp"
+        android:layout_height="225dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="6dp"
         android:background="@drawable/conversation_options_bg"
         android:layout_centerInParent="true">
 

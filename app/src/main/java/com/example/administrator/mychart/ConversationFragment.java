@@ -35,6 +35,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
     private Message_ListView_Item item;
     private SwipeMenuListView lv_data;
     private static SliderItemAdapter adapter;
+    private ConversationFragment conversationFragment = this;
     private PullToRefreshLayout mPullToRefreshLayout;
     private int currentindex;
     private View rootView;
@@ -103,7 +104,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 item=(Message_ListView_Item) adapter.getItem(position);
             }
             private void deleteItem(int position) {
-                AlertDialog.Builder  builder = new AlertDialog.Builder(ConversationFragment.this.getContext());
+                AlertDialog.Builder  builder = new AlertDialog.Builder(conversationFragment.getActivity());
                 builder.setTitle("确定删除吗？");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
 
@@ -130,11 +131,11 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
             @Override
             public void create(SwipeMenu menu) {
                 // create "open" item
-                SwipeMenuItem topItem = new SwipeMenuItem(ConversationFragment.this.getContext());
+                SwipeMenuItem topItem = new SwipeMenuItem(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/);
                 // set item background
                 topItem.setBackground(R.color.Button_grey);
                 // set item width
-                topItem.setWidth(DisplayUtil.dip2px(ConversationFragment.this.getContext(), 80));
+                topItem.setWidth(DisplayUtil.dip2px(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/, 80));
                 // set item title
                 topItem.setTitle("置顶");
                 // set item title fontsize
@@ -145,11 +146,11 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 menu.addMenuItem(topItem);
 
                 // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(ConversationFragment.this.getContext());
+                SwipeMenuItem openItem = new SwipeMenuItem(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/);
                 // set item background
                 openItem.setBackground(R.color.Button_yellow);
                 // set item width
-                openItem.setWidth(DisplayUtil.dip2px(ConversationFragment.this.getContext(), 100));
+                openItem.setWidth(DisplayUtil.dip2px(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/, 100));
                 // set item title
                 openItem.setTitle("标记已读");
                 // set item title fontsize
@@ -160,11 +161,11 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 menu.addMenuItem(openItem);
 
                 // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(ConversationFragment.this.getContext());
+                SwipeMenuItem deleteItem = new SwipeMenuItem(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/);
                 // set item background
                 deleteItem.setBackground(R.color.Button_red);
                 // set item width
-                deleteItem.setWidth(DisplayUtil.dip2px(ConversationFragment.this.getContext(), 80));
+                deleteItem.setWidth(DisplayUtil.dip2px(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/, 80));
                 // set item title"删除"
                 deleteItem.setTitle("删除");
                 // set item title fontsize
@@ -179,7 +180,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
         lv_data.setDividerHeight(1);
         lv_data.setMenuCreator(creator);
 
-        adapter=new SliderItemAdapter(this.getContext(),messgeList);
+        adapter=new SliderItemAdapter(conversationFragment.getActivity()/*this.getContext()*/,messgeList);
         lv_data.setAdapter(adapter);
     }
 
