@@ -83,6 +83,7 @@ public class MainActivity extends SlidingFragmentActivity
         setBehindContentView(R.layout.fragment_sliding_menu);
         if (menuFragment == null) {
             menuFragment = new MenuFragment(/*this*/);
+            menuFragment.mainActivity = this;
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame, menuFragment).commit();
@@ -119,7 +120,7 @@ public class MainActivity extends SlidingFragmentActivity
                     x = (1-(Math.abs(positionOffset) / Math.abs(positionOffsetPixels))) * 255;
                 }
                 iv_left_button.getBackground().setAlpha((int)x);
-                Log.d("CGQ","position="+position+",positionOffset="+positionOffset+",positionOffsetPixels="+positionOffsetPixels);
+               // Log.d("CGQ","position="+position+",positionOffset="+positionOffset+",positionOffsetPixels="+positionOffsetPixels);
             }
         });
     }

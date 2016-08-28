@@ -6,20 +6,27 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.mychart.MainActivity;
 import com.example.administrator.mychart.R;
+import com.example.administrator.mychart.database.DatabaseUtil;
+import com.example.administrator.mychart.utils.JxlUtil;
 
 
 public class MenuFragment extends BaseFragment implements OnClickListener{
     
 	//@ViewInject(R.id.userhead_img)
 	ImageView iv_personal_icon;// 头像图标
-	MainActivity mainActivity;
+	TextView tv_out_exel;
+	public static MainActivity mainActivity;
 
-	public MenuFragment(/*MainActivity mainActivity*/) {
-		//this.mainActivity = mainActivity;
-	}
+	public MenuFragment() {
+	}/*
+	public MenuFragment(MainActivity mainActivity) {
+		this.mainActivity = mainActivity;
+	}*/
 
 	@Override
 	public View setContentUI(LayoutInflater inflater, ViewGroup container) {
@@ -31,7 +38,8 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
 	public void init(){
 		iv_personal_icon = (ImageView) rootView.findViewById(R.id.iv_personal_icon);
 		iv_personal_icon.setOnClickListener(this);
-		
+		tv_out_exel = (TextView) rootView.findViewById(R.id.tv_out_exel);
+		tv_out_exel.setOnClickListener(this);
 	   /* CircleBitmap circleBitmap = new CircleBitmap();
 	    iv_personal_icon.setDrawingCacheEnabled(true);
 	    Bitmap bitmap = iv_personal_icon.getDrawingCache(); 
@@ -46,7 +54,15 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
 		case R.id.iv_personal_icon:
 			takePhoto(v);
 			break;
-
+			case R.id.tv_out_exel:
+				DatabaseUtil mUtil = new DatabaseUtil(mainActivity);
+				JxlUtil jxl = new JxlUtil(mUtil.queryAll());
+				if(jxl.toExcel()){
+					Toast.makeText(mainActivity, "success", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(mainActivity, "failt", Toast.LENGTH_SHORT).show();
+				}
+				break;
 		default:
 			break;
 		}

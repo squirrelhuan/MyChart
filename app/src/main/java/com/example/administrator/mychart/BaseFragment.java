@@ -57,6 +57,10 @@ public abstract class BaseFragment extends Fragment {
 		/** 绑定activity */
 		this.mActivity = activity;
 		provider = UIProvider.getInstance();
+		if(this instanceof DoorListener) {
+			MyselfApplication.getManager().addDoorListener((DoorListener) this);
+			Log.i("CGQ","fragment doorlistener");
+		}
 
 	}
 
@@ -64,10 +68,7 @@ public abstract class BaseFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		service = new PreferencesService(mActivity);
-		if(this instanceof DoorListener) {
-			MyselfApplication.manager.addDoorListener((DoorListener) this);
-			Log.i("CGQ","fragment doorlistener");
-		}
+
 	}
 
 	@Override

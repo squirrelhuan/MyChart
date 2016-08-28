@@ -86,14 +86,14 @@ public class UdpService extends BaseService {
 		udpData.setRequestType(enums.requestType.login);
 		Message message = new Message();
 		message.setContent("ni hao a");
-		User user1 = new User();
-		user1.setUsername(username);
-		user1.setPassword(password);
-		user1.setId(2);
-		User user2 = new User();
-		user2.setId(3);
-		message.setReciveUser(user2);
-		message.setSendUser(user1);
+		User user_sender = new User();
+		user_sender.setUsername(username);
+		user_sender.setPassword(password);
+		user_sender.setId(2);
+		User user_reciver = new User();
+		user_reciver.setId(3);
+		message.setReciveUser(user_reciver);
+		message.setSendUser(user_sender);
 		udpData.setMessage(message);
 		sendMessage(udpData);
 	}
@@ -141,14 +141,14 @@ public class UdpService extends BaseService {
 					udpData.setRequestType(enums.requestType.sendData);
 					Message message = new Message();
 					message.setContent("ni hao a");
-					User user1 = new User();
-					user1.setUsername("978252909");
-					user1.setPassword("112233");
-					user1.setId(1);
-					User user2 = new User();
-					user2.setId(2);
-					message.setReciveUser(user2);
-					message.setSendUser(user1);
+					User user_sender = new User();
+					user_sender.setUsername("978252909");
+					user_sender.setPassword("112233");
+					user_sender.setId(1);
+					User user_reciver = new User();
+					user_reciver.setId(1);
+					message.setReciveUser(user_reciver);
+					message.setSendUser(user_sender);
 					udpData.setMessage(message);
 
 					String sendStr = JSON.toJSONString(udpData);
@@ -236,13 +236,14 @@ public class UdpService extends BaseService {
 		Message message = udpData.getMessage();
 		result.add(message);
 		//manager.HaveNewMessage(message);
+		Log.d(TAG,"message："+message.getContent());
 		if(udpData.getMessage().getContent().equals("login success")){
 			//登陆成功
 			message.setContent("login success");
-			MyselfApplication.manager.LoginMessage(message);
+			MyselfApplication.getManager().LoginMessage(message);
 			Log.d(TAG,"登陆成功！！！");
 		}else {
-			MyselfApplication.manager.HaveNewMessage(message);
+			MyselfApplication.getManager().HaveNewMessage(message);
 		}
 	}
 }

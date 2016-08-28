@@ -10,6 +10,7 @@ public class User  implements Serializable{
 	private int id;
 	private String username;
 	private String password;
+	private String nickname;
 	private Image headimage;
 	private Date date = new Date();
 	private String ip;
@@ -58,5 +59,13 @@ public class User  implements Serializable{
 
 	public void setHeadimage(Image headimage) {
 		this.headimage = headimage;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }

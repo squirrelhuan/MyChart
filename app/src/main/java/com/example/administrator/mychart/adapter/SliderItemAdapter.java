@@ -57,6 +57,7 @@ public class SliderItemAdapter extends BaseAdapter implements DraggableFlagView.
 		view=View.inflate(context,R.layout.slider_item, null);
 		holder.tv_username=(TextView) view.findViewById(R.id.tv_username);
 		holder.tv_time=(TextView) view.findViewById(R.id.tv_time);
+		holder.tv_content = (TextView) view.findViewById(R.id.tv_content);
 		holder.draggableFlagView = (DraggableFlagView) view.findViewById(R.id.main_dfv);
 		holder.draggableFlagView.setOnDraggableFlagViewListener(this);
 		holder.draggableFlagView.setText("1"/*+Math.random()*10*/);
@@ -69,7 +70,12 @@ public class SliderItemAdapter extends BaseAdapter implements DraggableFlagView.
 		}
 		Message_ListView_Item item =data.get(position);
 		holder.tv_username.setText(item.getSendUser().getUsername());
-		holder.draggableFlagView.setText(""+item.getCount());
+		holder.tv_content.setText(item.getContent());
+		if(item==null && item.getCount()==0) {
+			holder.draggableFlagView.setVisibility(View.GONE);
+		}else {
+			holder.draggableFlagView.setText("" + item.getCount());
+		}
 		DateFormat shortDateFormat =DateFormat.getDateTimeInstance(
 						DateFormat.SHORT,
 						DateFormat.SHORT);
@@ -78,6 +84,7 @@ public class SliderItemAdapter extends BaseAdapter implements DraggableFlagView.
 	}
 	private class ViewHolder{
 		private TextView tv_username;
+		private TextView tv_content;
 		private TextView tv_time;
 		DraggableFlagView draggableFlagView;
 	}

@@ -123,10 +123,10 @@ public abstract class BaseActy extends Activity {
 
 		//manager.addDoorListener(MainActivity.getInstance());// 给门1增加监听器
 		if (MainActivity.conversationFragment != null) {
-			MyselfApplication.manager.addDoorListener((ConversationFragment) MainActivity.conversationFragment);
+			MyselfApplication.getManager().addDoorListener((ConversationFragment) MainActivity.conversationFragment);
 		}
 		if (mContext instanceof DoorListener) {
-			MyselfApplication.manager.addDoorListener((DoorListener) mContext);
+			MyselfApplication.getManager().addDoorListener((DoorListener) mContext);
 		}
 }
     //注册广播

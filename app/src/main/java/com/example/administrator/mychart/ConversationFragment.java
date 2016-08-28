@@ -17,8 +17,10 @@ import com.example.administrator.mychart.SwipeMenuListView.SwipeMenuCreator;
 import com.example.administrator.mychart.SwipeMenuListView.SwipeMenuItem;
 import com.example.administrator.mychart.SwipeMenuListView.SwipeMenuListView;
 import com.example.administrator.mychart.adapter.SliderItemAdapter;
+import com.example.administrator.mychart.database.DatabaseUtil;
 import com.example.administrator.mychart.event.myevent.DoorListener;
 import com.example.administrator.mychart.event.myevent.MessageEvent;
+import com.example.administrator.mychart.model.Message;
 import com.example.administrator.mychart.model.Message_ListView_Item;
 import com.example.administrator.mychart.pullrefresh.PullToRefreshLayout;
 import com.example.administrator.mychart.utils.DisplayUtil;
@@ -35,7 +37,6 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
     private Message_ListView_Item item;
     private SwipeMenuListView lv_data;
     private static SliderItemAdapter adapter;
-    private ConversationFragment conversationFragment = this;
     private PullToRefreshLayout mPullToRefreshLayout;
     private int currentindex;
     private View rootView;
@@ -69,6 +70,12 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
     public void init(){
         lv_data=(SwipeMenuListView) rootView.findViewById(R.id.lv_data);
 
@@ -76,6 +83,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                messgeList.get(position).setCount(0);
                 Intent intent=new Intent(getActivity(),ChartActivity.class);
                 item=(Message_ListView_Item) adapter.getItem(position);
                 startActivity(intent);
@@ -104,7 +112,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 item=(Message_ListView_Item) adapter.getItem(position);
             }
             private void deleteItem(int position) {
-                AlertDialog.Builder  builder = new AlertDialog.Builder(conversationFragment.getActivity());
+                AlertDialog.Builder  builder = new AlertDialog.Builder(ConversationFragment.this.getContext());
                 builder.setTitle("确定删除吗？");
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
 
@@ -131,11 +139,11 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
             @Override
             public void create(SwipeMenu menu) {
                 // create "open" item
-                SwipeMenuItem topItem = new SwipeMenuItem(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/);
+                SwipeMenuItem topItem = new SwipeMenuItem(ConversationFragment.this.getContext());
                 // set item background
                 topItem.setBackground(R.color.Button_grey);
                 // set item width
-                topItem.setWidth(DisplayUtil.dip2px(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/, 80));
+                topItem.setWidth(DisplayUtil.dip2px(ConversationFragment.this.getContext(), 80));
                 // set item title
                 topItem.setTitle("置顶");
                 // set item title fontsize
@@ -146,11 +154,11 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 menu.addMenuItem(topItem);
 
                 // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/);
+                SwipeMenuItem openItem = new SwipeMenuItem(ConversationFragment.this.getContext());
                 // set item background
                 openItem.setBackground(R.color.Button_yellow);
                 // set item width
-                openItem.setWidth(DisplayUtil.dip2px(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/, 100));
+                openItem.setWidth(DisplayUtil.dip2px(ConversationFragment.this.getContext(), 100));
                 // set item title
                 openItem.setTitle("标记已读");
                 // set item title fontsize
@@ -161,11 +169,11 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 menu.addMenuItem(openItem);
 
                 // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/);
+                SwipeMenuItem deleteItem = new SwipeMenuItem(ConversationFragment.this.getContext());
                 // set item background
                 deleteItem.setBackground(R.color.Button_red);
                 // set item width
-                deleteItem.setWidth(DisplayUtil.dip2px(conversationFragment.getActivity()/*ConversationFragment.this.getContext()*/, 80));
+                deleteItem.setWidth(DisplayUtil.dip2px(ConversationFragment.this.getContext(), 80));
                 // set item title"删除"
                 deleteItem.setTitle("删除");
                 // set item title fontsize
@@ -180,7 +188,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
         lv_data.setDividerHeight(1);
         lv_data.setMenuCreator(creator);
 
-        adapter=new SliderItemAdapter(conversationFragment.getActivity()/*this.getContext()*/,messgeList);
+        adapter=new SliderItemAdapter(ConversationFragment.this.getContext(),messgeList);
         lv_data.setAdapter(adapter);
     }
 
@@ -203,6 +211,7 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
                 message.setSendUser(event.getMessage().getSendUser());
                 message.setTime(event.getMessage().getTime());
                 message.setCount(message.getCount()+1);
+
             }
         }
         if (!isRecentContacts){
@@ -213,6 +222,12 @@ public class ConversationFragment extends BaseFragment implements DoorListener {
             message_listView_item.setTime(new Date());
             messgeList.add(message_listView_item);
         }
+        Log.d("CGQ","username="+event.getMessage().getSendUser().getUsername());
+        DatabaseUtil mDBUtil;
+        event.getMessage().getSendUser().setNickname("昵称test");
+        mDBUtil = new DatabaseUtil(ConversationFragment.this.getActivity());
+        mDBUtil.InsertMessage(event.getMessage());
+       // MyselfApplication.getApp().mDBUtil.InsertMessage(event.getMessage());
         handler.sendEmptyMessage(0);
     }
     Handler handler=new Handler(){

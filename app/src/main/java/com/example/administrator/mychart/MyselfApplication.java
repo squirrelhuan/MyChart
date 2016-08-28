@@ -3,6 +3,7 @@ package com.example.administrator.mychart;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.mychart.activity.LoginActivity;
+import com.example.administrator.mychart.database.DatabaseUtil;
 import com.example.administrator.mychart.event.myevent.DoorManager;
 import com.example.administrator.mychart.service.UdpService;
 import com.example.administrator.mychart.utils.PreferencesService;
@@ -37,10 +39,11 @@ public class MyselfApplication extends Application {
 	private static MyselfApplication mAppApplication;
 	private static ToastUtils toastUtils;
 	protected PreferencesService service;
+	protected DatabaseUtil mDBUtil;
 	public static UdpService udpService;
 	public static int page;
 	public static boolean isNetworkConnected;
-	public static DoorManager manager = new DoorManager();
+	private static DoorManager manager = new DoorManager();
 	private Collection listeners;
 
 	@Override
@@ -49,9 +52,9 @@ public class MyselfApplication extends Application {
 		mAppApplication = this;
 		toastUtils = new ToastUtils(this);
 		service = new PreferencesService(this);
-
+		mDBUtil = new DatabaseUtil(this);
+		Log.d("CGQ","MyselfApplication onCreate...");
 	}
-
 
 	/** TODO 获取Application */
 	public static MyselfApplication getApp() {
@@ -68,4 +71,5 @@ public class MyselfApplication extends Application {
 		return toastUtils;
 	}
 
+	public static DoorManager getManager(){return manager;}
 }

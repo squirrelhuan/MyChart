@@ -161,6 +161,16 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/tv_out_exel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="left|center_vertical"
+            android:paddingRight="15dp"
+            android:text="导出exel数据库"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 </LinearLayout>
