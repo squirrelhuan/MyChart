@@ -1,5 +1,6 @@
 package com.example.administrator.mychart.fragment;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.administrator.mychart.MainActivity;
 import com.example.administrator.mychart.R;
+import com.example.administrator.mychart.activity.MyQrCodeActivity;
 import com.example.administrator.mychart.database.DatabaseUtil;
 import com.example.administrator.mychart.utils.JxlUtil;
 
@@ -19,6 +21,7 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
     
 	//@ViewInject(R.id.userhead_img)
 	ImageView iv_personal_icon;// 头像图标
+	ImageView iv_setting_me_qr_code_icon;//二维码
 	TextView tv_out_exel;
 	public static MainActivity mainActivity;
 
@@ -40,6 +43,9 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
 		iv_personal_icon.setOnClickListener(this);
 		tv_out_exel = (TextView) rootView.findViewById(R.id.tv_out_exel);
 		tv_out_exel.setOnClickListener(this);
+		iv_setting_me_qr_code_icon = (ImageView) rootView.findViewById(R.id.iv_setting_me_qr_code_icon);
+		iv_setting_me_qr_code_icon.setOnClickListener(this);
+
 	   /* CircleBitmap circleBitmap = new CircleBitmap();
 	    iv_personal_icon.setDrawingCacheEnabled(true);
 	    Bitmap bitmap = iv_personal_icon.getDrawingCache(); 
@@ -62,6 +68,10 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
 				}else{
 					Toast.makeText(mainActivity, "failt", Toast.LENGTH_SHORT).show();
 				}
+				break;
+			case R.id.iv_setting_me_qr_code_icon:
+				Intent intent = new Intent(getActivity(), MyQrCodeActivity.class);
+				startActivity(intent);
 				break;
 		default:
 			break;
