@@ -32,26 +32,35 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class MainActivity extends SlidingFragmentActivity
-        implements DoorListener ,View.OnClickListener {
+        implements DoorListener, View.OnClickListener {
 
-    /** 侧边栏菜单 */
+    /**
+     * 侧边栏菜单
+     */
     private SlidingMenu slidingMenu;
     MenuFragment menuFragment;
 
-    /** 侧边菜单之设备fragment */
+    /**
+     * 侧边菜单之设备fragment
+     */
     public static Fragment conversationFragment;
     private Fragment contactFragment;
     private Fragment pluginFragment;
-    /** 底部三个imageView */
-    private ImageView iv_conversation,iv_contact,iv_plugin;
+    /**
+     * 底部三个imageView
+     */
+    private ImageView iv_conversation, iv_contact, iv_plugin;
 
-   // @ViewInject(R.id.iv_left_button)
+    // @ViewInject(R.id.iv_left_button)
     public static ImageView iv_left_button;// 显示侧边栏
-  //  @ViewInject(R.id.btn_right)
-   // ImageView btn_right;// 显示侧边栏
+    //  @ViewInject(R.id.btn_right)
+    // ImageView btn_right;// 显示侧边栏
 
     protected static LayoutInflater inflater_toast;
-    protected static ConversationPopupWindow conversationPopupWindow;/** 上下文环境 */
+    protected static ConversationPopupWindow conversationPopupWindow;
+    /**
+     * 上下文环境
+     */
     public static Context mContext;
 
     @Override
@@ -103,35 +112,37 @@ public class MainActivity extends SlidingFragmentActivity
         slidingMenu.setOnClosedListener(new SlidingMenu.OnClosedListener() {
             @Override
             public void onClosed() {
-               //iv_left_button.setVisibility(View.VISIBLE);
+                //iv_left_button.setVisibility(View.VISIBLE);
             }
         });
         slidingMenu.setOnOpenedListener(new SlidingMenu.OnOpenedListener() {
             @Override
             public void onOpened() {
-               // iv_left_button.setVisibility(View.GONE);
+                // iv_left_button.setVisibility(View.GONE);
             }
         });
         slidingMenu.setOnScrowViewListener(new SlidingMenu.OnScrowViewListener_m() {
             @Override
             public void onScrow(int position, float positionOffset, int positionOffsetPixels) {
                 float x = 0;
-                if(Math.abs(positionOffset)>=0) {
-                    x = (1-(Math.abs(positionOffset) / Math.abs(positionOffsetPixels))) * 255;
+                if (Math.abs(positionOffset) >= 0) {
+                    x = (1 - (Math.abs(positionOffset) / Math.abs(positionOffsetPixels))) * 255;
                 }
-                iv_left_button.getBackground().setAlpha((int)x);
-               // Log.d("CGQ","position="+position+",positionOffset="+positionOffset+",positionOffsetPixels="+positionOffsetPixels);
+                iv_left_button.getBackground().setAlpha((int) x);
+                // Log.d("CGQ","position="+position+",positionOffset="+positionOffset+",positionOffsetPixels="+positionOffsetPixels);
             }
         });
     }
 
-    /** 左侧按钮 */
+    /**
+     * 左侧按钮
+     */
     @OnClick(R.id.iv_left_button)
     public void onClickLeftButton(View v) {
         switch (v.getId()) {
             case R.id.iv_left_button:
-               // v.setVisibility(View.GONE);
-               // toggle();
+                // v.setVisibility(View.GONE);
+                // toggle();
                 showMenu();
                 break;
 
@@ -140,15 +151,17 @@ public class MainActivity extends SlidingFragmentActivity
         }
     }
 
-    /** 右侧按钮 */
+    /**
+     * 右侧按钮
+     */
     @OnClick(R.id.btn_right)
     public void onNewClick(View v) {
         ShowDialog_ConversationMenu(v);
-      //  Intent intent = new Intent(MainActivity.this, ContentActivity.class);
-       // startActivity(intent);
+        //  Intent intent = new Intent(MainActivity.this, ContentActivity.class);
+        // startActivity(intent);
     }
 
-    public void init(){
+    public void init() {
         iv_left_button = (ImageView) findViewById(R.id.iv_left_button);
         iv_conversation = (ImageView) findViewById(R.id.iv_conversation);
         iv_conversation.setOnClickListener(this);
@@ -169,7 +182,9 @@ public class MainActivity extends SlidingFragmentActivity
         }
     }
 
-    /** TODO 添加fragment */
+    /**
+     * TODO 添加fragment
+     */
     private void addFragmentToStack(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -211,17 +226,20 @@ public class MainActivity extends SlidingFragmentActivity
                 }
                 break;
             default:
-            if (conversationFragment == null) {
-                conversationFragment = new ConversationFragment();
-                transaction.add(R.id.content_frame, conversationFragment);
-            } else {
-                transaction.show(conversationFragment);
-            }
-            break;
+                if (conversationFragment == null) {
+                    conversationFragment = new ConversationFragment();
+                    transaction.add(R.id.content_frame, conversationFragment);
+                } else {
+                    transaction.show(conversationFragment);
+                }
+                break;
         }
         transaction.commit();
     }
-    /** TODO 将所有的Fragment都置为隐藏状态。 */
+
+    /**
+     * TODO 将所有的Fragment都置为隐藏状态。
+     */
     private void hideFragments(FragmentTransaction transaction) {
         if (conversationFragment != null) {
             transaction.hide(conversationFragment);
@@ -229,7 +247,7 @@ public class MainActivity extends SlidingFragmentActivity
         if (contactFragment != null) {
             transaction.hide(contactFragment);
         }
-        if(pluginFragment != null){
+        if (pluginFragment != null) {
             transaction.hide(pluginFragment);
         }
 
@@ -243,13 +261,13 @@ public class MainActivity extends SlidingFragmentActivity
     //收到新消息事件
     @Override
     public void messageEvent(MessageEvent event) {
-        Log.i("CGQ","MainActivity:new message...");
+        Log.i("CGQ", "MainActivity:new message...");
         handler.sendEmptyMessage(0);
         //event.doMethod(this.getClass(),"sss",null);
         //Toast.makeText(this, "new message", Toast.LENGTH_SHORT).show();
     }
 
-    Handler handler=new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             MyselfApplication application = (MyselfApplication) MyselfApplication.getApp();
@@ -262,7 +280,7 @@ public class MainActivity extends SlidingFragmentActivity
     @Override
     public void onClick(View v) {
         hideImageButton();
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_conversation:
                 addFragmentToStack(0);
                 iv_conversation.setImageResource(R.drawable.skin_tab_icon_conversation_selected);
@@ -277,17 +295,20 @@ public class MainActivity extends SlidingFragmentActivity
                 break;
         }
     }
-    public void hideImageButton(){
+
+    public void hideImageButton() {
         iv_conversation.setImageResource(R.drawable.skin_tab_icon_conversation_normal);
         iv_contact.setImageResource(R.drawable.skin_tab_icon_contact_normal);
         iv_plugin.setImageResource(R.drawable.skin_tab_icon_plugin_normal);
     }
 
-    /** 会话菜单的dialog */
-    public static void ShowDialog_ConversationMenu(View pview){
-        View view = inflater_toast.inflate(R.layout.login_popupwindows,null);
+    /**
+     * 会话菜单的dialog
+     */
+    public static void ShowDialog_ConversationMenu(View pview) {
+        View view = inflater_toast.inflate(R.layout.login_popupwindows, null);
         conversationPopupWindow = new ConversationPopupWindow();
-        conversationPopupWindow.getView(mContext, view,pview);
+        conversationPopupWindow.getView(mContext, view, pview);
     }
 
     Handler myHandler = new Handler() {
@@ -298,22 +319,22 @@ public class MainActivity extends SlidingFragmentActivity
             super.handleMessage(msg);
         }
     };
-public static void scanf(){
-    Intent intent = new Intent(mContext, CaptureActivity.class);
-    ((MainActivity)mContext).startActivityForResult(intent, 1);
-}
+
+    public static void scanf() {
+        Intent intent = new Intent(mContext, CaptureActivity.class);
+        ((MainActivity) mContext).startActivityForResult(intent, 1);
+    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
-        switch (requestCode)
-        {
+        switch (requestCode) {
             case 1:
-                if (data != null)
-                {
+                if (data != null) {
                     String result = data.getStringExtra("result");
-                    if (result != null){}
-                        //tv.setText(result);
+                    if (result != null) {
+                    }
+                    //tv.setText(result);
                 }
                 break;
 

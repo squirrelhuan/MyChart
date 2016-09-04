@@ -20,7 +20,7 @@ import com.example.administrator.mychart.utils.JxlUtil;
 public class MenuFragment extends BaseFragment implements OnClickListener{
     
 	//@ViewInject(R.id.userhead_img)
-	ImageView iv_personal_icon;// 头像图标
+	ImageView iv_menu_personal_icon;// 头像图标
 	ImageView iv_setting_me_qr_code_icon;//二维码
 	TextView tv_out_exel;
 	public static MainActivity mainActivity;
@@ -39,8 +39,8 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
 
 	@Override
 	public void init(){
-		iv_personal_icon = (ImageView) rootView.findViewById(R.id.iv_personal_icon);
-		iv_personal_icon.setOnClickListener(this);
+		iv_menu_personal_icon = (ImageView) rootView.findViewById(R.id.iv_menu_personal_icon);
+		iv_menu_personal_icon.setOnClickListener(this);
 		tv_out_exel = (TextView) rootView.findViewById(R.id.tv_out_exel);
 		tv_out_exel.setOnClickListener(this);
 		iv_setting_me_qr_code_icon = (ImageView) rootView.findViewById(R.id.iv_setting_me_qr_code_icon);
@@ -57,7 +57,7 @@ public class MenuFragment extends BaseFragment implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.iv_personal_icon:
+		case R.id.iv_menu_personal_icon:
 			takePhoto(v);
 			break;
 			case R.id.tv_out_exel:

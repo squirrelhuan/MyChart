@@ -101,6 +101,9 @@ public class ConversationPopupWindow {
 						break;
 					case 2://扫一扫
 						//Intent intent = new Intent(mContext, CaptureActivity.class);
+						animationSet.restrictDuration(500);
+						animationSet.reset();
+						pW_menu.dismiss();
 						((MainActivity)mContext).scanf();
 						break;
 					case 3:
